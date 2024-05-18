@@ -10,15 +10,16 @@ using namespace std ;
 int d[4][2] = {{1,0},{0,1},{-1,0},{0,-1}} ;
 
 /*
-n*nのグリッドで最短経路を求める
-n:盤面の大きさ
+h*wのグリッドで最短経路を求める
+h:盤面の縦幅
+w:盤面の横幅
 board:そのマスに侵入するためのコストを格納
 s:スタート
 g:ゴール
 */
-int gridBFS(int n, vector<vector<bool>> &board,pair<int,int> s, pair<int,int> g){
+int gridBFS(int h, int w, vector<vector<int>> &board,pair<int,int> s, pair<int,int> g){
     //確定した最短経路を格納する
-    vector<vector<int>> cost(n,vector<int>(n,-1)) ;
+    vector<vector<int>> cost(h,vector<int>(w,-1)) ;
 
     cost.at(s.first).at(s.second) = 0 ;
 
@@ -35,7 +36,7 @@ int gridBFS(int n, vector<vector<bool>> &board,pair<int,int> s, pair<int,int> g)
         {
             int nx = x + d[i][0] ;
             int ny = y + d[i][1] ;
-            if (nx < 0 || n <= nx || ny < 0 || n <= ny)
+            if (nx < 0 || h <= nx || ny < 0 || w <= ny)
             {
                 continue;
             }
@@ -53,4 +54,47 @@ int gridBFS(int n, vector<vector<bool>> &board,pair<int,int> s, pair<int,int> g)
     }
     
     return cost.at(g.first).at(g.second) ;
+}
+
+int main() {
+    //ARC005C:器物損壊！高橋君の場合
+    int h,w ;
+    cin >> h >> w ;
+    vector<string> str(h) ;
+    vector<vector<int>> map(h,vector<int>(w,0)) ;
+
+    pair<int,int> s;
+    pair<int,int> g;
+
+    for (int i = 0; i < h; i++)
+    {
+        for (int j = 0; j < w; j++)
+        {
+            
+            char c ;
+            cin >> c ;
+            if (c == 's')
+            {
+                s = make_pair(i,j) ;
+            }else if (c == 'g')
+            {
+                g = make_pair(i,j) ;
+            }else if (c == '#')
+            {
+                map.at(i).at(j) = 1 ;
+            }
+            
+        }
+        
+    }
+    
+    if (gridBFS(h,w,map,s,g) <= 2)
+    {
+        cout << "YES" << endl ;
+    }else
+    {
+        cout << "NO" << endl ;
+    }
+        
+    return 0;
 }
