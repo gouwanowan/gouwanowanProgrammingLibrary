@@ -16,7 +16,7 @@ board:そのマスに侵入するためのコストを格納
 s:スタート
 g:ゴール
 */
-int gridBFS(int n, vector<vector<bool>> board,pair<int,int> s, pair<int,int> g){
+int gridBFS(int n, vector<vector<bool>> &board,pair<int,int> s, pair<int,int> g){
     //確定した最短経路を格納する
     vector<vector<int>> cost(n,vector<int>(n,-1)) ;
 
