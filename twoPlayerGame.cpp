@@ -34,6 +34,7 @@ bool ifWinFirst(vector<int> &dp, int state, bool first){
 
     //可能な遷移を列挙する
     vector<int> ablemove(0) ;
+    /* ここで列挙 */
 
     for (int i = 0; i < ablemove.size(); i++)
     {
