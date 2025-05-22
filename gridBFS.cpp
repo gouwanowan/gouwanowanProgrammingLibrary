@@ -9,6 +9,28 @@ using namespace std ;
 
 int d[4][2] = {{1,0},{0,1},{-1,0},{0,-1}} ;
 
+//x軸が右、y軸が上の場合
+void moveRUDL(int &x,int &y, char dir){
+    switch (s.at(i))
+    {
+    case 'R':
+        x ++ ;
+        break;
+    case 'L':
+        x -- ;
+        break;
+    case 'U':
+        y ++ ;
+        break;
+    case 'D':
+        y -- ;
+        break;
+    default:
+        break;
+    }
+    return ;
+}
+
 /*
 h*wのグリッドで最短経路を求める
 h:盤面の縦幅
